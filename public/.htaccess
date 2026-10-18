@@ -1,0 +1,7 @@
+# =========================================================
+# XMOTOS - .htaccess de public/
+# =========================================================
+
+<FilesMatch "\.(env|log|sql)$">
+    Require all denied
+</FilesMatch>

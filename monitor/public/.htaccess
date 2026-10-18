@@ -1,0 +1,19 @@
+# ============================================================
+# Monitor XMotos - .htaccess de public/
+# ============================================================
+
+# Bloquear acceso a archivos sensibles
+<FilesMatch "\.(env|md|log|ini|sql)$">
+    Require all denied
+</FilesMatch>
+
+# Bloquear acceso a carpetas ocultas
+RedirectMatch 403 /\..*$
+
+# Redirigir todo a index.php si no es un archivo existente
+RewriteEngine On
+RewriteBase /xmotos/monitor/public/
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?route=$1 [QSA,L]

@@ -1,0 +1,25 @@
+# Variables de entorno (NUNCA subir contraseñas)
+.env
+
+# Configuración de VS Code
+.vscode/
+*.code-workspace
+
+# Sistema Operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Subidas de usuarios (archivos pesados o privados)
+public/uploads/*
+!public/uploads/.gitkeep
+
+# Archivos temporales
+*.log
+*.tmp
+*.bak
+
+# Scripts de prueba que borramos
+setup*.php
+test_conexion.php
+reset_password.php

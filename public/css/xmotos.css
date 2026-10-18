@@ -1,0 +1,1234 @@
+/* =========================================================
+   XMOTOS - SISTEMA VISUAL GLOBAL (VERSIÓN CORREGIDA)
+   Paleta: Gris muy claro + Azul noche + Verde lima
+   Correcciones:
+   - Hover de tablas consistente (sin fondo negro)
+   - Bloques @media unificados y sin llaves extra
+   - Estilos de dashboard admin completos
+   ========================================================= */
+
+/* =========================================================
+   1. VARIABLES
+   ========================================================= */
+:root {
+    /* ========== FRONTEND (tema claro) ========== */
+    --x-bg: #F8FAFC;
+    --x-surface: #FFFFFF;
+    --x-surface-2: #F1F5F9;
+    --x-surface-3: #E2E8F0;
+
+    --x-text: #0F172A;
+    --x-text-muted: #64748B;
+    --x-border: #E2E8F0;
+
+    /* ========== DASHBOARD (tema oscuro en sidebar) ========== */
+    --x-dark-bg: #0F172A;
+    --x-dark-surface: #1E293B;
+    --x-dark-surface-2: #334155;
+    --x-dark-text: #F8FAFC;
+    --x-dark-text-muted: #94A3B8;
+    --x-dark-border: #334155;
+
+    /* ========== ACENTOS ========== */
+    --x-primary: #B8FF24;
+    --x-primary-hover: #9FE31A;
+    --x-primary-text: #0F172A;
+    --x-primary-dark: #4A7A00;
+
+    --x-info: #3B82F6;
+    --x-info-hover: #2563EB;
+    --x-info-light: #DBEAFE;
+
+    --x-warning: #F59E0B;
+    --x-warning-light: #FEF3C7;
+
+    --x-danger: #EF4444;
+    --x-danger-light: #FEE2E2;
+
+    --x-success: #10B981;
+    --x-success-light: #D1FAE5;
+
+    /* ========== SOMBRAS Y RADIOS ========== */
+    --x-shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06);
+    --x-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
+    --x-shadow-lg: 0 20px 50px rgba(15, 23, 42, 0.12);
+    --x-radius: 16px;
+    --x-transition: 0.25s ease;
+
+    /* ========== HOVER DE TABLAS (CLAVE) ========== */
+    --x-table-hover: #F1F5F9;   /* gris muy claro, NO negro */
+}
+
+/* =========================================================
+   2. BASE
+   ========================================================= */
+* { box-sizing: border-box; }
+
+html {
+    font-size: 14px;
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--x-bg);
+    color: var(--x-text);
+    font-family: "Inter", Arial, sans-serif;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--x-text);
+    font-family: "Montserrat", Arial, sans-serif;
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+h1 { font-size: clamp(1.5rem, 3.5vw, 2.4rem); }
+h2 { font-size: clamp(1.2rem, 2.8vw, 1.8rem); }
+h3 { font-size: clamp(1rem, 2vw, 1.4rem); }
+
+p {
+    color: var(--x-text-muted);
+    font-size: 1.05rem;
+}
+
+a {
+    color: var(--x-info);
+    text-decoration: none;
+    transition: color var(--x-transition);
+}
+
+a:hover { color: var(--x-info-hover); }
+
+/* =========================================================
+   3. NAVBAR
+   ========================================================= */
+.x-navbar {
+    background: var(--x-dark-bg);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.7px solid rgba(255, 255, 255, 0.08);
+    padding: 1rem 0;
+    box-shadow: 0 2px 10px rgba(15, 23, 42, 0.15);
+}
+
+.x-navbar .navbar-brand {
+    color: #FFFFFF !important;
+    font-weight: 900;
+    letter-spacing: 1px;
+    font-size: 1.5rem;
+}
+
+.x-navbar .navbar-brand i {
+    color: var(--x-primary);
+    font-size: 1.6rem;
+    filter: drop-shadow(0 0 8px rgba(184, 255, 36, 0.5));
+}
+
+.x-navbar .nav-link {
+    color: rgba(248, 250, 252, 0.75) !important;
+    font-weight: 600;
+    font-size: 1.05rem;
+    padding: 0.6rem 1rem !important;
+    transition: color var(--x-transition);
+}
+
+.x-navbar .nav-link:hover,
+.x-navbar .nav-link.active {
+    color: var(--x-primary) !important;
+}
+
+.x-navbar .dropdown-menu {
+    background: var(--x-dark-surface);
+    border: 1px solid var(--x-dark-border);
+    font-size: 1rem;
+    min-width: 240px;
+    box-shadow: var(--x-shadow-lg);
+}
+
+.x-navbar .dropdown-item {
+    color: var(--x-dark-text);
+    padding: 0.7rem 1rem;
+    font-size: 1rem;
+}
+
+.x-navbar .dropdown-item:hover {
+    background: var(--x-dark-surface-2);
+    color: var(--x-primary);
+}
+
+.x-navbar .dropdown-header {
+    color: var(--x-dark-text-muted);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0.5rem 1rem;
+}
+
+.x-navbar .dropdown-toggle::after {
+    margin-left: 0.5rem;
+    vertical-align: middle;
+}
+
+/* =========================================================
+   4. BOTONES
+   ========================================================= */
+.btn-x-primary {
+    background: var(--x-primary);
+    border: 1px solid var(--x-primary);
+    color: var(--x-primary-text);
+    font-weight: 800;
+    border-radius: 12px;
+    font-size: 1rem;
+    padding: 0.7rem 1.4rem;
+    transition: all var(--x-transition);
+}
+
+.btn-x-primary:hover {
+    background: var(--x-primary-hover);
+    border-color: var(--x-primary-hover);
+    color: var(--x-primary-text);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(184, 255, 36, 0.4);
+}
+
+.btn-x-info {
+    background: var(--x-info);
+    border: 1px solid var(--x-info);
+    color: #FFF;
+    font-weight: 700;
+    border-radius: 12px;
+    font-size: 1rem;
+    padding: 0.7rem 1.4rem;
+    transition: all var(--x-transition);
+}
+
+.btn-x-info:hover {
+    background: var(--x-info-hover);
+    border-color: var(--x-info-hover);
+    color: #FFF;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+}
+
+.btn-x-outline {
+    background: transparent;
+    border: 1px solid var(--x-border);
+    color: var(--x-text);
+    font-weight: 700;
+    border-radius: 12px;
+    font-size: 1rem;
+    padding: 0.7rem 1.4rem;
+    transition: all var(--x-transition);
+}
+
+.btn-x-outline:hover {
+    background: var(--x-surface-2);
+    color: var(--x-info);
+    border-color: var(--x-info);
+}
+
+/* Botones genéricos usados en dashboard */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 16px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background .15s ease, border-color .15s ease, transform .05s ease;
+}
+
+.btn:active { transform: translateY(1px); }
+
+.btn-primary {
+    background: var(--x-primary);
+    color: var(--x-primary-text);
+    border-color: var(--x-primary);
+}
+.btn-primary:hover { background: var(--x-primary-hover); }
+
+.btn-outline {
+    background: #fff;
+    color: var(--x-text);
+    border-color: var(--x-border);
+}
+.btn-outline:hover { background: var(--x-surface-2); }
+
+.btn-danger {
+    background: #fff;
+    color: #B91C1C;
+    border-color: #FECACA;
+}
+.btn-danger:hover { background: var(--x-danger-light); }
+
+/* =========================================================
+   5. TARJETAS
+   ========================================================= */
+.x-card {
+    background: var(--x-surface);
+    border: 1px solid var(--x-border);
+    border-radius: var(--x-radius);
+    box-shadow: var(--x-shadow);
+    transition: all var(--x-transition);
+}
+
+.x-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(59, 130, 246, 0.25);
+    box-shadow: var(--x-shadow-lg);
+}
+
+/* =========================================================
+   6. TEXTOS ÚTILES
+   ========================================================= */
+.text-x-muted { color: var(--x-text-muted) !important; }
+.text-x-primary { color: var(--x-primary-dark) !important; }
+.text-x-info { color: var(--x-info) !important; }
+
+/* =========================================================
+   7. BADGES GENERALES
+   ========================================================= */
+.x-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    background: rgba(184, 255, 36, 0.25);
+    border: 1px solid rgba(184, 255, 36, 0.5);
+    color: var(--x-primary-dark);
+    font-size: 0.85rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+}
+
+.badge-aprobado,
+.badge-pagada       { background: #DCFCE7; color: #166534; }
+.badge-cancelado    { background: #FEE2E2; color: #991B1B; }
+.badge-pendiente    { background: #FEF3C7; color: #92400E; }
+.badge-negociacion  { background: #DBEAFE; color: #1E40AF; }
+.badge-convertida   { background: #E0E7FF; color: #3730A3; }
+
+/* =========================================================
+   8. SECCIONES
+   ========================================================= */
+.x-section { padding: 3rem 0; }
+
+.x-section-title {
+    max-width: 760px;
+    margin: 0 auto 3rem;
+    text-align: center;
+}
+.x-section-title h2 { margin-bottom: 1rem; }
+
+/* =========================================================
+   9. FOOTER
+   ========================================================= */
+.x-footer {
+    background: var(--x-dark-bg);
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 2rem 0;
+    font-size: 1rem;
+    color: var(--x-dark-text-muted);
+}
+
+.x-footer a { color: var(--x-dark-text-muted); }
+.x-footer a:hover { color: var(--x-primary); }
+.x-footer p { color: var(--x-dark-text-muted); }
+
+/* =========================================================
+   10. HERO X
+   ========================================================= */
+.hero-x {
+    position: relative;
+    min-height: 50vh;
+    display: grid;
+    place-items: center;
+    text-align: center;
+    padding: 2rem 1rem;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(15, 23, 42, 0.92) 0%,
+            rgba(15, 23, 42, 0.75) 50%,
+            rgba(15, 23, 42, 0.55) 100%
+        ),
+        url("../img/fondo-2.jpg") center / cover no-repeat;
+    border-bottom: 1px solid var(--x-border);
+    color: #FFFFFF;
+}
+
+.hero-x h1,
+.hero-x h2,
+.hero-x h3,
+.hero-x h4,
+.hero-x h5,
+.hero-x h6 {
+    color: #FFFFFF !important;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.85);
+    font-weight: 800;
+}
+
+.hero-x p,
+.hero-x span { color: #FFFFFF; }
+
+.hero-x p {
+    color: rgba(255, 255, 255, 0.92) !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+    font-size: 1.15rem;
+}
+
+.hero-x .x-badge {
+    background: rgba(184, 255, 36, 0.25);
+    border: 1px solid rgba(184, 255, 36, 0.5);
+    color: #E8FFC2 !important;
+    backdrop-filter: blur(8px);
+}
+
+.hero-x .btn-x-outline {
+    color: #FFFFFF !important;
+    border-color: rgba(255, 255, 255, 0.7) !important;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.hero-x .btn-x-outline:hover {
+    background: #FFFFFF !important;
+    color: var(--x-dark-bg) !important;
+    border-color: #FFFFFF !important;
+}
+
+/* =========================================================
+   11. HERO COMPACTO
+   ========================================================= */
+.hero-compact {
+    background: var(--x-dark-bg);
+    padding: 1.5rem 1rem;
+    text-align: center;
+    border-bottom: 1px solid var(--x-border);
+    color: #FFFFFF;
+}
+
+.hero-compact h1 {
+    color: #FFFFFF !important;
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    font-weight: 800;
+    margin-bottom: 0;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.hero-compact p,
+.hero-compact .x-badge { display: none; }
+
+/* =========================================================
+   12. HERO CARRUSEL
+   ========================================================= */
+.hero-carrusel {
+    position: relative;
+    min-height: 90vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--x-border);
+}
+
+.hero-carrusel .hero-carousel {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+}
+
+.hero-carrusel .hero-carousel .carousel-inner,
+.hero-carrusel .hero-carousel .carousel-item { height: 100%; }
+
+.hero-carrusel .hero-carousel .carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-carrusel .hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(
+        180deg,
+        rgba(15, 23, 42, 0.80) 0%,
+        rgba(15, 23, 42, 0.60) 50%,
+        rgba(15, 23, 42, 0.90) 100%
+    );
+}
+
+.hero-carrusel .hero-contenido {
+    position: relative;
+    z-index: 3;
+    max-width: 900px;
+    padding: 3rem 1.5rem;
+    text-align: center;
+    color: #FFF;
+}
+
+.hero-carrusel .hero-contenido h1,
+.hero-carrusel .hero-contenido p {
+    color: #FFF !important;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+}
+
+/* =========================================================
+   13. ICON BOX / CTA
+   ========================================================= */
+.x-icon-box {
+    width: 64px;
+    height: 64px;
+    display: grid;
+    place-items: center;
+    border-radius: 16px;
+    background: rgba(184, 255, 36, 0.20);
+    border: 1px solid rgba(184, 255, 36, 0.4);
+    color: var(--x-primary-dark);
+}
+
+.x-icon-box i { color: var(--x-primary-dark); }
+
+.x-cta {
+    background: linear-gradient(135deg, rgba(184, 255, 36, 0.20), rgba(59, 130, 246, 0.05));
+    border: 1px solid rgba(184, 255, 36, 0.35);
+    border-radius: var(--x-radius);
+}
+
+/* =========================================================
+   14. CATÁLOGO
+   ========================================================= */
+.product-card {
+    background: var(--x-surface);
+    border: 1px solid var(--x-border);
+    border-radius: var(--x-radius);
+    transition: all var(--x-transition);
+    overflow: hidden;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    border-color: rgba(59, 130, 246, 0.3);
+    box-shadow: var(--x-shadow-lg);
+}
+
+.product-card .btn-favorito {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.95);
+    border: none;
+    color: var(--x-danger);
+    display: grid;
+    place-items: center;
+    padding: 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    transition: all var(--x-transition);
+    cursor: pointer;
+}
+
+.product-card .btn-favorito:hover {
+    background: var(--x-danger);
+    color: #FFF;
+    transform: scale(1.1);
+}
+
+.product-card .btn-favorito.activo {
+    background: var(--x-danger);
+    color: #FFF;
+}
+
+/* =========================================================
+   15. FORMULARIOS (tema claro)
+   ========================================================= */
+.form-label {
+    color: var(--x-text);
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+
+.form-control,
+.form-select {
+    background: var(--x-surface);
+    border: 1px solid var(--x-border);
+    color: var(--x-text);
+    padding: 0.7rem 1rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    transition: all var(--x-transition);
+}
+
+.form-control:focus,
+.form-select:focus {
+    background: var(--x-surface);
+    border-color: var(--x-info);
+    color: var(--x-text);
+    box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.15);
+    outline: none;
+}
+
+.form-control::placeholder {
+    color: var(--x-text-muted);
+    opacity: 0.6;
+}
+
+/* =========================================================
+   16. DASHBOARD ADMIN
+   ========================================================= */
+.dashboard-wrapper {
+    display: flex;
+    min-height: 100vh;
+    background: #F1F5F9;
+    color: #0F172A;
+}
+
+.dashboard-sidebar {
+    width: 300px;
+    background: #0F172A;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 1.5rem 1.25rem;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    overflow-y: auto;
+    transition: transform var(--x-transition);
+    z-index: 1000;
+}
+
+.dashboard-brand {
+    margin-bottom: 2rem;
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.4rem;
+    font-weight: 900;
+}
+
+.dashboard-brand a {
+    color: #F8FAFC;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.dashboard-brand i {
+    color: var(--x-primary);
+    filter: drop-shadow(0 0 6px rgba(184, 255, 36, 0.5));
+}
+
+.dashboard-brand span {
+    color: var(--x-primary);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.dashboard-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.dashboard-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.85rem 1rem;
+    border-radius: 10px;
+    color: #94A3B8;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all var(--x-transition);
+}
+
+.dashboard-nav-link:hover {
+    background: #1E293B;
+    color: #F8FAFC;
+}
+
+.dashboard-nav-link.active {
+    background: rgba(184, 255, 36, 0.15);
+    color: var(--x-primary);
+    border-left: 3px solid var(--x-primary);
+}
+
+.dashboard-nav-link i { font-size: 1.15rem; }
+
+.dashboard-main {
+    flex: 1;
+    margin-left: 300px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: #F1F5F9;
+}
+
+.dashboard-topbar {
+    background: #FFFFFF;
+    border-bottom: 1px solid #E2E8F0;
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
+}
+
+.dashboard-title {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #0F172A;
+    margin: 0;
+}
+
+.dashboard-user {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #0F172A;
+    font-weight: 600;
+}
+
+.dashboard-user i {
+    font-size: 1.8rem;
+    color: #3B82F6;
+}
+
+.dashboard-content {
+    flex: 1;
+    padding: 2rem;
+    background: #F1F5F9;
+}
+
+.dashboard-footer {
+    background: #FFFFFF;
+    border-top: 1px solid #E2E8F0;
+    padding: 1rem 2rem;
+    text-align: center;
+    color: #64748B;
+}
+
+/* =========================================================
+   17. TARJETAS DE ESTADÍSTICAS
+   ========================================================= */
+.stat-card {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    transition: all var(--x-transition);
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
+}
+
+.stat-card:hover {
+    border-color: rgba(59, 130, 246, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+.stat-content h6 {
+    color: #64748B;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+}
+
+.stat-content h3 {
+    color: #0F172A;
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 0 0 0.5rem 0;
+}
+
+.stat-badge {
+    display: inline-block;
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+    background: #D1FAE5;
+    color: #059669;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.stat-badge.danger {
+    background: #FEE2E2;
+    color: #DC2626;
+}
+
+.stat-icon-circle {
+    width: 50px;
+    height: 50px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    background: rgba(184, 255, 36, 0.20);
+    color: #4A7A00;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+/* =========================================================
+   18. BÚSQUEDA EN TOPBAR
+   ========================================================= */
+.dashboard-search {
+    flex: 1;
+    max-width: 400px;
+    position: relative;
+}
+
+.dashboard-search input {
+    width: 100%;
+    padding: 0.7rem 1rem 0.7rem 2.5rem;
+    border-radius: 12px;
+    border: 1px solid #E2E8F0;
+    background: #F1F5F9;
+    color: #0F172A;
+    font-size: 0.95rem;
+}
+
+.dashboard-search input::placeholder { color: #94A3B8; }
+
+.dashboard-search i {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #94A3B8;
+}
+
+/* =========================================================
+   19. TABLAS DEL DASHBOARD (HOVER CORREGIDO)
+   ========================================================= */
+.dashboard-table {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: var(--x-radius);
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.05);
+}
+
+.dashboard-table table {
+    margin: 0;
+    color: #0F172A;
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+.dashboard-table th {
+    background: #F8FAFC;
+    color: #64748B;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    padding: 1rem;
+    border-bottom: 1px solid #E2E8F0;
+    white-space: nowrap;
+}
+
+.dashboard-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #E2E8F0;
+    vertical-align: middle;
+    color: #0F172A;
+    font-size: 0.95rem;
+    background: #FFFFFF;
+    transition: background-color .18s ease;
+}
+
+/* HOVER CORREGIDO: gris muy claro, NUNCA negro */
+.dashboard-table tbody tr:hover td,
+.dashboard-table tbody tr:hover {
+    background: var(--x-table-hover) !important;
+    color: #0F172A !important;
+    cursor: pointer;
+}
+
+.dashboard-table tbody tr:last-child td { border-bottom: none; }
+
+.dashboard-table .product-thumb {
+    width: 70px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #E2E8F0;
+}
+
+.dashboard-table .product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.dashboard-table .product-info .brand {
+    font-weight: 700;
+    color: #0F172A;
+    font-size: 0.95rem;
+}
+
+.dashboard-table .product-info .model {
+    color: #64748B;
+    font-size: 0.85rem;
+}
+
+/* Tablas genéricas (facturas, ventas, solicitudes del cliente) */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: var(--x-radius);
+    overflow: hidden;
+    font-size: 14px;
+}
+
+table thead { background: #F8FAFC; }
+
+table th {
+    text-align: left;
+    padding: 12px 16px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    color: var(--x-text-muted);
+    border-bottom: 1px solid var(--x-border);
+}
+
+table td {
+    padding: 14px 16px;
+    border-bottom: 1px solid var(--x-border);
+    color: var(--x-text);
+    vertical-align: middle;
+    background: #FFFFFF;
+    transition: background-color .18s ease;
+}
+
+table tbody tr:last-child td { border-bottom: none; }
+
+/* HOVER UNIFICADO PARA TODAS LAS TABLAS */
+table tbody tr:hover td,
+table tbody tr:hover,
+.tabla-facturas tbody tr:hover td,
+.tabla-solicitudes tbody tr:hover td,
+.tabla-ventas tbody tr:hover td,
+.tabla-facturas tbody tr:hover,
+.tabla-solicitudes tbody tr:hover,
+.tabla-ventas tbody tr:hover {
+    background-color: var(--x-table-hover) !important;
+    color: var(--x-text) !important;
+    cursor: pointer;
+}
+
+/* =========================================================
+   20. BADGES ESPECÍFICOS DEL DASHBOARD
+   ========================================================= */
+.category-badge {
+    display: inline-block;
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    background: #DBEAFE;
+    color: #1E40AF;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.stock-badge {
+    display: inline-block;
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    background: #D1FAE5;
+    color: #059669;
+    font-size: 0.8rem;
+    font-weight: 700;
+    min-width: 40px;
+    text-align: center;
+}
+
+.stock-badge.low { background: #FEF3C7; color: #D97706; }
+.stock-badge.out { background: #FEE2E2; color: #DC2626; }
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.status-badge.activo   { background: #D1FAE5; color: #059669; }
+.status-badge.inactivo { background: #E2E8F0; color: #64748B; }
+
+/* =========================================================
+   21. BOTONES DE ACCIÓN
+   ========================================================= */
+.action-buttons {
+    display: flex;
+    gap: 0.4rem;
+    justify-content: flex-end;
+}
+
+.btn-action,
+.action-btn {
+    width: 36px;
+    height: 36px;
+    display: inline-grid;
+    place-items: center;
+    border-radius: 8px;
+    border: 1px solid #E2E8F0;
+    background: #FFFFFF;
+    color: #64748B;
+    transition: all var(--x-transition);
+    padding: 0;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.btn-action:hover,
+.action-btn:hover {
+    background: #3B82F6;
+    color: #FFF;
+    border-color: #3B82F6;
+    transform: translateY(-1px);
+}
+
+.btn-action.edit:hover   { background: #3B82F6; border-color: #3B82F6; }
+.btn-action.toggle:hover { background: #F59E0B; color: #FFF; border-color: #F59E0B; }
+.btn-action.delete:hover { background: #EF4444; color: #FFF; border-color: #EF4444; }
+
+/* =========================================================
+   22. ENCABEZADO DE TABLA
+   ========================================================= */
+.table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 1.5rem;
+    border-bottom: 1px solid #E2E8F0;
+    background: #FFFFFF;
+}
+
+.table-header h2 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0F172A;
+}
+
+.table-header .count {
+    color: #64748B;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* =========================================================
+   23. FORMULARIOS DEL DASHBOARD
+   ========================================================= */
+.dashboard-content .form-label {
+    color: #0F172A;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+
+.dashboard-content .form-control,
+.dashboard-content .form-select {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    color: #0F172A;
+    padding: 0.7rem 1rem;
+    border-radius: 10px;
+}
+
+.dashboard-content .form-control:focus,
+.dashboard-content .form-select:focus {
+    background: #FFFFFF;
+    border-color: #3B82F6;
+    color: #0F172A;
+    box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.15);
+}
+
+.dashboard-content .form-control::placeholder {
+    color: #94A3B8;
+    opacity: 1;
+}
+
+/* =========================================================
+   24. KPI CARDS (por si usas .kpi-card en lugar de .stat-card)
+   ========================================================= */
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 18px;
+    margin-bottom: 24px;
+}
+
+.kpi-card {
+    background: #fff;
+    border: 1px solid var(--x-border);
+    border-radius: var(--x-radius);
+    padding: 18px 20px;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, .05);
+}
+
+.kpi-card .kpi-value {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--x-text);
+    line-height: 1;
+}
+
+.kpi-card .kpi-label {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    background: #DCFCE7;
+    color: #166534;
+}
+
+/* =========================================================
+   25. MODAL
+   ========================================================= */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, .55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-box {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px 28px;
+    max-width: 440px;
+    width: 90%;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, .25);
+}
+
+.modal-box h4 { margin: 0 0 10px; font-size: 16px; }
+.modal-box p  { margin: 0 0 20px; color: var(--x-text-muted); font-size: 14px; }
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* =========================================================
+   26. BOTÓN HAMBURGUESA
+   ========================================================= */
+.navbar-toggler {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 0.4rem 0.7rem;
+}
+
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 0.2rem rgba(184, 255, 36, 0.25);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%23B8FF24' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* =========================================================
+   27. RESPONSIVE (UNIFICADO, SIN LLAVES EXTRA)
+   ========================================================= */
+@media (min-width: 1400px) { html { font-size: 19px; } }
+@media (min-width: 1920px) { html { font-size: 20px; } }
+
+@media (max-width: 991px) {
+    html { font-size: 17px; }
+
+    .x-navbar { padding: 0.8rem 0; }
+    .x-navbar .navbar-brand { font-size: 1.3rem; }
+    .x-navbar .nav-link { font-size: 1rem; padding: 0.5rem 0.8rem !important; }
+
+    .x-navbar .navbar-collapse {
+        background: var(--x-dark-surface);
+        border: 1px solid var(--x-dark-border);
+        border-radius: 12px;
+        padding: 1rem;
+        margin-top: 0.5rem;
+    }
+
+    .hero-carrusel { min-height: 75vh; }
+    .hero-x { min-height: 55vh; }
+    .hero-x h1 { font-size: 2.2rem; }
+    .hero-x p { font-size: 1.05rem; }
+
+    /* Dashboard: sidebar colapsable */
+    .dashboard-sidebar { transform: translateX(-100%); }
+    .dashboard-sidebar.show { transform: translateX(0); }
+    .dashboard-main { margin-left: 0; }
+    .dashboard-content { padding: 1rem; }
+}
+
+@media (max-width: 768px) {
+    html { font-size: 16px; }
+
+    .x-section { padding: 3.5rem 0; }
+    .x-navbar .navbar-brand { font-size: 1.2rem; }
+    .x-navbar .nav-link { font-size: 0.95rem; }
+
+    .hero-carrusel { min-height: 70vh; }
+    .hero-carrusel .hero-contenido h1 { font-size: 2rem; }
+    .hero-carrusel .hero-contenido p { font-size: 1rem; }
+
+    .hero-x { min-height: 50vh; }
+    .hero-x h1 { font-size: 1.8rem; }
+    .hero-x p { font-size: 1rem; }
+
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    table { font-size: 12px; }
+    table th, table td { padding: 10px 12px; }
+}
+
+@media (max-width: 480px) {
+    html { font-size: 15px; }
+
+    .x-navbar .navbar-brand { font-size: 1.1rem; }
+    .x-navbar .navbar-brand i { font-size: 1.2rem; }
+    .hero-carrusel .hero-contenido h1 { font-size: 1.7rem; }
+    .hero-x h1 { font-size: 1.6rem; }
+
+    .kpi-grid { grid-template-columns: 1fr; }
+    .topbar { flex-direction: column; align-items: stretch; }
+}

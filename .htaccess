@@ -1,0 +1,14 @@
+# =========================================================
+# XMOTOS - .htaccess raíz
+# Redirige todo el tráfico a /public/
+# =========================================================
+
+RewriteEngine On
+RewriteBase /xmotos/
+
+# Si la URL ya apunta a /public/, no hacer nada
+RewriteCond %{REQUEST_URI} ^/xmotos/public/
+RewriteRule ^ - [L]
+
+# Redirigir todo lo demás a /public/
+RewriteRule ^(.*)$ public/$1 [L]

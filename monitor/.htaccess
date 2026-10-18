@@ -1,0 +1,6 @@
+# ============================================================
+# Monitor XMotos - protección de carpetas sensibles
+# ============================================================
+
+# Denegar acceso directo a estas carpetas
+RedirectMatch 403 ^/xmotos/monitor/(auth|config|includes|pages|api)/.*$
