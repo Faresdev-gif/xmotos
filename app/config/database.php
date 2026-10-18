@@ -70,11 +70,14 @@ class Database {
      */
     public static function getOracleConnection() {
         if (self::$oracleConnection === null) {
-            $host    = $_ENV['ORACLE_HOST'] ?? '127.0.0.1';
-            $port    = $_ENV['ORACLE_PORT'] ?? '1521';
-            $service = $_ENV['ORACLE_SERVICE'] ?? 'freepdb1.FALSE';
-            $user    = $_ENV['ORACLE_USER'] ?? 'system';
-            $pass    = $_ENV['ORACLE_PASS'] ?? 'Oracle2026*';
+                          
+            $host    = $_ENV['ORACLE_HOST'] ?? die('Error: ORACLE_HOST no definido en .env');
+            $port    = $_ENV['ORACLE_PORT'] ?? die('Error: ORACLE_PORT no definido en .env');
+            $service = $_ENV['ORACLE_SERVICE'] ?? die('Error: ORACLE_SERVICE no definido en .env');
+            $user    = $_ENV['ORACLE_USER'] ?? die('Error: ORACLE_USER no definido en .env');
+            $pass    = $_ENV['ORACLE_PASS'] ?? die('Error: ORACLE_PASS no definido en .env');
+            
+        
 
             $tns = "(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=$host)(PORT=$port))(CONNECT_DATA=(SERVICE_NAME=$service)))";
 
