@@ -166,48 +166,39 @@ Este proyecto fue desarrollado como parte del curso de **Sistemas Distribuidos**
 ### 1. Clonar el repositorio
 
 ```bash
-git clone https://github.com/tu-usuario/xmotos.git
-cd xmotos
 
-## variables de Entorno
 # ============ Aplicación ============
 APP_ENV=local
 APP_DEBUG=true
 
 # ============ Base de datos maestra ============
-DB_HOST=127.0.0.1
-DB_PORT=3307
-DB_NAME=xmotos
-DB_USER=root
-DB_PASS=
+DB_HOST=tu_host
+DB_PORT=3306
+DB_NAME=tu_base_de_datos
+DB_USER=tu_usuario
+DB_PASS=tu_contraseña
 DB_CHARSET=utf8mb4
 
-# ============ Oracle (opcional) ============
-ORACLE_HOST=127.0.0.1
-ORACLE_PORT=1521
-ORACLE_SERVICE=freepdb1.FALSE
-ORACLE_USER=system
-ORACLE_PASS=
+# Base maestra (reemplaza con tus credenciales y ruta local)
+mysql -h TU_HOST -P TU_PUERTO -u TU_USUARIO -p TU_BASE_DE_DATOS < ruta/a/tu/estructura_xmotos.sql
 
-# Base maestra
-mysql -h 127.0.0.1 -P 3307 -u root < sql/01_estructura_xmotos.sql
+# Base réplica (reemplaza con tus credenciales)
+mysql -h TU_HOST -P TU_PUERTO -u TU_USUARIO -p TU_BASE_DE_DATOS_REPLICA < ruta/a/tu/estructura_replica.sql
 
-# Base réplica (tablas vacías)
-mysql -h 127.0.0.1 -P 3307 -u root < sql/02_estructura_replica.sql
+# Triggers (ejecutar en la base maestra)
+mysql -h TU_HOST -P TU_PUERTO -u TU_USUARIO -p TU_BASE_DE_DATOS < ruta/a/tu/01_usuarios.sql
+mysql -h TU_HOST -P TU_PUERTO -u TU_USUARIO -p TU_BASE_DE_DATOS < ruta/a/tu/02_productos.sql
+mysql -h TU_HOST -P TU_PUERTO -u TU_USUARIO -p TU_BASE_DE_DATOS < ruta/a/tu/03_ventas.sql
+mysql -h TU_HOST -P TU_PUERTO -u TU_USUARIO -p TU_BASE_DE_DATOS < ruta/a/tu/04_venta_detalle.sql
+mysql -h TU_HOST -P TU_PUERTO -u TU_USUARIO -p TU_BASE_DE_DATOS < ruta/a/tu/05_solicitudes.sql
+mysql -h TU_HOST -P TU_PUERTO -u TU_USUARIO -p TU_BASE_DE_DATOS < ruta/a/tu/06_compras.sql
+mysql -h TU_HOST -P TU_PUERTO -u TU_USUARIO -p TU_BASE_DE_DATOS < ruta/a/tu/07_compras_detalle.sql
 
-mysql -h 127.0.0.1 -P 3307 -u root xmotos < sql/triggers/01_usuarios.sql
-mysql -h 127.0.0.1 -P 3307 -u root xmotos < sql/triggers/02_productos.sql
-mysql -h 127.0.0.1 -P 3307 -u root xmotos < sql/triggers/03_ventas.sql
-mysql -h 127.0.0.1 -P 3307 -u root xmotos < sql/triggers/04_venta_detalle.sql
-mysql -h 127.0.0.1 -P 3307 -u root xmotos < sql/triggers/05_solicitudes.sql
-mysql -h 127.0.0.1 -P 3307 -u root xmotos < sql/triggers/06_compras.sql
-mysql -h 127.0.0.1 -P 3307 -u root xmotos < sql/triggers/07_compras_detalle.sql
+# Seed inicial (ejecutar en la base réplica)
+mysql -h TU_HOST -P TU_PUERTO -u TU_USUARIO -p TU_BASE_DE_DATOS_REPLICA < ruta/a/tu/seed_inicial.sql
 
-mysql -h 127.0.0.1 -P 3307 -u root xmotos_replica < sql/seed/seed_inicial.sql
-
-mysql -h 127.0.0.1 -P 3307 -u root xmotos_replica < sql/seed/seed_monitor_usuario.sql
-
-
+# Usuario del monitor
+mysql -h TU_HOST -P TU_PUERTO -u TU_USUARIO -p TU_BASE_DE_DATOS_REPLICA < ruta/a/tu/seed_monitor_usuario.sql
 ---
 
 ## Parte 6 — Uso
@@ -399,7 +390,7 @@ El proyecto implementa **defensa en profundidad** con múltiples capas:
 - Estudiante de Ingeniería de Sistemas
 - Curso: Sistemas Distribuidos
 - [ing.ingridj.hernandez@gmail.com]
-- [GitHub](https://github.com/tu-usuario)
+- [GitHub](https://github.com/Faresdev-gif)
 
 ---
 
@@ -426,7 +417,6 @@ Este proyecto se distribuye bajo la licencia **MIT**. Ver el archivo `LICENSE` p
 - [ ] **Docker** para despliegue reproducible.
 - [ ] **CI/CD** con GitHub Actions.
 - [ ] **Monitoreo con Prometheus + Grafana** para métricas de rendimiento.
-- [ ] **Migración a Oracle DB** como nodo distribuido adicional.
 - [ ] **Tests automatizados** con PHPUnit.
 - [ ] **Paginación AJAX** en el explorador de auditoría.
 - [ ] **Exportación a CSV** del log de operaciones.
