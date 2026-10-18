@@ -27,10 +27,11 @@ class Database {
         $dbName = $dbName ?? ($_ENV['DB_NAME'] ?? 'xmotos');
 
         if (!isset(self::$connections[$dbName])) {
-            $host    = $_ENV['DB_HOST'] ?? '127.0.0.1';
-            $port    = $_ENV['DB_PORT'] ?? '3307';
-            $user    = $_ENV['DB_USER'] ?? 'root';
-            $pass    = $_ENV['DB_PASS'] ?? '';
+            
+            $host    = $_ENV['DB_HOST'] ?? die('Error: DB_HOST no definido en .env');
+            $port    = $_ENV['DB_PORT'] ?? die('Error: DB_PORT no definido en .env');
+            $user    = $_ENV['DB_USER'] ?? die('Error: DB_USER no definido en .env');
+            $pass    = $_ENV['DB_PASS'] ?? ''; // La contraseña puede estar vacía en local
             $charset = $_ENV['DB_CHARSET'] ?? 'utf8mb4';
 
             $dsn = "mysql:host=$host;port=$port;dbname=$dbName;charset=$charset";
